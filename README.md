@@ -6,4 +6,6 @@ LeRobot Robotics Hackathon participation
 - Specifically, review the [Challenge Documentation](https://huggingface.co/spaces/LeRobot-worldwide-hackathon/README/resolve/main/Challenges.pdf).
 
 
-Also familise yourself with https://github.com/huggingface/gym-hil and ofcourse https://github.com/huggingface/lerobot
+Also familise yourself with https://github.com/huggingface/gym-hil and ofcourse https://github.com/huggingface/lerobot  
+
+Head to Discussions and comment there to be added to the org
