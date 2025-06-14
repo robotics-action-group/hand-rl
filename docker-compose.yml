@@ -2,10 +2,10 @@
 version: '2.4'
 services:
   # build:
-  sim:
+  lerobot-sim:
     build:
       context: .
-      dockerfile: docker/lerobot.Dockerfile
+      dockerfile: sim-lerobot/docker/lerobot.Dockerfile
     image: lerobot-img:latest
     container_name: lerobot
     environment:
@@ -41,7 +41,44 @@ services:
         ipv4_address: 10.5.0.3
     restart: "no"
   # No custom networks section needed; containers will use the default 'docker0' bridge network.
-
+  sim-isaac:
+    build:
+      context: .
+      dockerfile: sim-isaac/docker/lerobot.Dockerfile
+    image: litcr.io/lit-container/vaishnavahari/myml/ilab-img:latest
+    container_name: sim-isaac
+    environment:
+      - ACCEPT_EULA=Y
+      - PRIVACY_CONSENT=Y
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - WANDB_API_KEY=${WANDB_API_KEY}
+      - WANDB_USERNAME=gg-robotics
+      - HF_TOKEN=${HF_TOKEN}
+      - MASTER_ADDR=10.5.0.2
+      - MASTER_PORT=29501
+      - GLOO_SOCKET_IFNAME=eth0
+      - DISPLAY=:0  # Use the host's display for GUI
+    volumes:
+    - ~/hand-rl:/workspace/hand-rl
+    - ~/hand-rl/sim-isaac/entrypoint.sh:/workspace/entrypoint.sh:rw
+    - ~/docker/isaac-sim/cache/kit:/isaac-sim/kit/cache:rw
+    - ~/docker/isaac-sim/cache/ov:/root/.cache/ov:rw
+    - ~/docker/isaac-sim/cache/pip:/root/.cache/pip:rw
+    - ~/docker/isaac-sim/cache/glcache:/root/.cache/nvidia/GLCache:rw
+    - ~/docker/isaac-sim/cache/computecache:/root/.nv/ComputeCache:rw
+    - ~/docker/isaac-sim/logs:/root/.nvidia-omniverse/logs:rw
+    - ~/docker/isaac-sim/data:/root/.local/share/ov/data:rw
+    - ~/docker/isaac-sim/documents:/root/Documents:rw
+    - ~/rldata:/workspace/rldata:rw
+    entrypoint: ["/bin/bash", "-i", "../entrypoint.sh"]
+    command: ["dev"]
+    # entrypoint: ["tail", "-f", "/dev/null"]
+    # runtime: nvidia
+    networks:
+      custom_net:
+        ipv4_address: 10.5.0.4
+    restart: "no"
 networks:
   custom_net:
     driver: bridge
