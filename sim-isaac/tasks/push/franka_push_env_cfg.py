@@ -12,9 +12,9 @@ from isaaclab.utils import configclass
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
 
 
-from franka-sim-isaac.tasks.push.push_env_cfg import PushEnvCfg
+from tasks.push.push_env_cfg import PushEnvCfg
 
-from franka-sim-isaac.tasks.push import mdp
+from tasks import mdp
 
 
 ##

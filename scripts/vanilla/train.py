@@ -69,9 +69,7 @@ from isaaclab_tasks.utils import get_checkpoint_path
 from isaaclab_tasks.utils.hydra import hydra_task_config
 
 # Import extensions to set up environment tasks
-import c3po.tasks  # noqa: F401
-
-from c3po.wrappers.support import SupportWrapper
+import tasks  # noqa: F401
 
 torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.allow_tf32 = True
@@ -83,19 +81,6 @@ from moviepy.editor import VideoFileClip
 # from gymnasium.utils.save_video import save_video
 
 
-# 1. Next door python class with inheritance, but solo no merging, fuck hydra
-# 2. YAML hybrid file, manually update objs inside main and before app launch. But scalable, yes and yes
-#['pelvis', 'left_hip_pitch_link', 'pelvis_contour_link', 'right_hip_pitch_link', 'torso_link', 'left_hip_roll_link', 'right_hip_roll_link', 'head_link', 'imu_link', 'left_shoulder_pitch_link', 'logo_link', 'right_shoulder_pitch_link', 'left_hip_yaw_link', 'right_hip_yaw_link', 'left_shoulder_roll_link', 'right_shoulder_roll_link', 'left_knee_link', 'right_knee_link', 'left_shoulder_yaw_link', 'right_shoulder_yaw_link', 'left_ankle_pitch_link', 'right_ankle_pitch_link', 'left_elbow_pitch_link', 'right_elbow_pitch_link', 'left_ankle_roll_link', 'right_ankle_roll_link', 'left_elbow_roll_link', 'right_elbow_roll_link', 'left_palm_link', 'right_palm_link', 'left_five_link', 'left_three_link', 'left_zero_link', 'right_five_link', 'right_three_link', 'right_zero_link', 'left_six_link', 'left_four_link', 'left_one_link', 'right_six_link', 'right_four_link', 'right_one_link', 'left_two_link', 'right_two_link']
-
-
-# ['left_hip_pitch_joint', 'right_hip_pitch_joint', 'torso_joint', 'left_hip_roll_joint', 'right_hip_roll_joint', 'left_shoulder_pitch_joint', 'right_shoulder_pitch_joint', 'left_hip_yaw_joint', 'right_hip_yaw_joint', 'left_shoulder_roll_joint', 'right_shoulder_roll_joint', 'left_knee_joint', 'right_knee_joint', 'left_shoulder_yaw_joint', 'right_shoulder_yaw_joint', 'left_ankle_pitch_joint', 'right_ankle_pitch_joint', 'left_elbow_pitch_joint', 'right_elbow_pitch_joint', 'left_ankle_roll_joint', 'right_ankle_roll_joint', 'left_elbow_roll_joint', 'right_elbow_roll_joint', 'left_five_joint', 'left_three_joint', 'left_zero_joint', 'right_five_joint', 'right_three_joint', 'right_zero_joint', 'left_six_joint', 'left_four_joint', 'left_one_joint', 'right_six_joint', 'right_four_joint', 'right_one_joint', 'left_two_joint', 'right_two_joint']
-
-
-
-## Neura link and joint names
-#['link_pelvis', 'link_left_hip_z', 'link_right_hip_z', 'link_torso_z', 'link_left_hip_x', 'link_right_hip_x', 'link_torso_x', 'link_left_thigh', 'link_right_thigh', 'link_torso_y', 'link_left_shin', 'link_right_shin', 'link_left_shoulder_y', 'link_right_shoulder_y', 'link_left_ankle_y', 'link_right_ankle_y', 'link_left_shoulder_x', 'link_right_shoulder_x', 'link_left_foot_ft_sensor', 'link_right_foot_ft_sensor', 'link_left_upper_arm', 'link_right_upper_arm', 'link_left_lower_arm', 'link_right_lower_arm', 'link_left_wrist_z', 'link_right_wrist_z', 'link_left_wrist_x', 'link_right_wrist_x', 'link_left_index_proximal', 'link_left_middle_proximal', 'link_left_pinky_proximal', 'link_left_ring_proximal', 'link_left_thumb_proximal_base', 'link_left_hand', 'link_right_index_proximal', 'link_right_middle_proximal', 'link_right_pinky_proximal', 'link_right_ring_proximal', 'link_right_thumb_proximal_base', 'link_right_hand', 'link_left_index_intermediate', 'link_left_middle_intermediate', 'link_left_pinky_intermediate', 'link_left_ring_intermediate', 'link_left_thumb_proximal', 'link_right_index_intermediate', 'link_right_middle_intermediate', 'link_right_pinky_intermediate', 'link_right_ring_intermediate', 'link_right_thumb_proximal', 'link_left_thumb_intermediate', 'link_right_thumb_intermediate', 'link_left_thumb_distal', 'link_right_thumb_distal']
-
-#['left_hip_z', 'right_hip_z', 'torso_z', 'left_hip_x', 'right_hip_x', 'torso_x', 'left_hip_y', 'right_hip_y', 'torso_y', 'left_knee', 'right_knee', 'left_shoulder_y', 'right_shoulder_y', 'left_ankle_y', 'right_ankle_y', 'left_shoulder_x', 'right_shoulder_x', 'left_ankle_x', 'right_ankle_x', 'left_shoulder_z', 'right_shoulder_z', 'left_elbow', 'right_elbow', 'left_wrist_z', 'right_wrist_z', 'left_wrist_x', 'right_wrist_x', 'left_index_finger_proximal', 'left_middle_finger_proximal', 'left_pinky_finger_proximal', 'left_ring_finger_proximal', 'left_thumb_finger_proximal_yaw', 'left_wrist_y', 'right_index_finger_proximal', 'right_middle_finger_proximal', 'right_pinky_finger_proximal', 'right_ring_finger_proximal', 'right_thumb_finger_proximal_yaw', 'right_wrist_y', 'mimic_left_index_intermediate', 'mimic_left_middle_intermediate', 'mimic_left_pinky_intermediate', 'mimic_left_ring_intermediate', 'left_thumb_finger_proximal_pitch', 'mimic_right_index_intermediate', 'mimic_right_middle_intermediate', 'mimic_right_pinky_intermediate', 'mimic_right_ring_intermediate', 'right_thumb_finger_proximal_pitch', 'mimic_left_thumb_intermediate', 'mimic_right_thumb_intermediate', 'mimic_left_thumb_distal', 'mimic_right_thumb_distal']
 @hydra_task_config(args_cli.task, "rsl_rl_cfg_entry_point")
 def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agent_cfg: RslRlOnPolicyRunnerCfg):
     """Train with RSL-RL agent."""

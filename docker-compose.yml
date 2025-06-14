@@ -73,8 +73,7 @@ services:
     - ~/rldata:/workspace/rldata:rw
     entrypoint: ["/bin/bash", "-i", "../entrypoint.sh"]
     command: ["dev"]
-    # entrypoint: ["tail", "-f", "/dev/null"]
-    # runtime: nvidia
+    runtime: nvidia
     networks:
       custom_net:
         ipv4_address: 10.5.0.4
