@@ -71,6 +71,7 @@ class FrankaCubePushEnvCfg(PushEnvCfg):
             spawn=UsdFileCfg(
                 usd_path=f"{ISAAC_NUCLEUS_DIR}/Props/Blocks/DexCube/dex_cube_instanceable.usd",
                 scale=(0.5, 0.5, 0.5),
+                rigid_props=RigidBodyPropertiesCfg(kinematic_enabled=True)
             ),
         )
         self.scene.goal_post_left = RigidObjectCfg(

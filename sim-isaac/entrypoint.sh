@@ -17,24 +17,25 @@ fi
 echo "Installing dependencies..."
 
 shopt -s expand_aliases
-cd /workspace/c3po/source/c3po
-source ${HOME}/.bashrc && \
-# pip install -e .
 
-cd /workspace/c3po/source/c3po_utils
+cd /workspace/hand-rl/sim-isaac
 pip install -e . --quiet
+
+cd /workspace/hand-rl/c3po_utils
+pip install -e . --quiet
+
+# TODO: add rldata support
+# cd /workspace
+# # git clone https://github.com/svaichu/rldata.git
+# cd rldata
+# pip install -e . --quiet
 
 cd /workspace
-# git clone https://github.com/svaichu/rldata.git
-cd rldata
+pip uninstall -y rsl-rl-lib
+git clone https://github.com/svaichu/rsl_rl.git
+cd rsl_rl
+git checkout feat/add-video-wandb
 pip install -e . --quiet
-
-# cd /workspace
-# pip uninstall -y rsl-rl-lib
-# git clone https://github.com/svaichu/rsl_rl.git
-# cd rsl_rl
-# git checkout feat/add-video-wandb
-# pip install -e . --quiet
 # cd /workspace
 # git clone https://github.com/svaichu/lerobot.git
 # cd lerobot
@@ -51,15 +52,17 @@ echo "All dependencies installed successfully."
 # if deploy arg is passed, run this file
 if [ "$1" = "job" ]; then
     echo "Running job mode"
-    cd /workspace/c3po 
-    FOLDER_NAME=${2:-vanilla}  # Use the second argument if provided, otherwise default to "support"
-    echo "Using folder: $FOLDER_NAME"
-    isaaclab -p scripts/vla/sim-test.py
+    cd /workspace/hand-rl 
+    # FOLDER_NAME=${2:-vanilla}  # Use the second argument if provided, otherwise default to "support"
+    # echo "Using folder: $FOLDER_NAME"
+    # isaaclab -p scripts/vla/sim-test.py
+    echo "NOT IMPLEMENTED YET"
+    #TODO add script train/play
     exit 0
 fi
 
 if [ "$1" = "dev" ]; then
     echo "Running in dev mode"
-    cd /workspace/c3po 
+    cd /workspace/hand-rl 
     /bin/bash
 fi
