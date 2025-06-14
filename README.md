@@ -9,3 +9,5 @@ LeRobot Robotics Hackathon participation
 Also familise yourself with https://github.com/huggingface/gym-hil and ofcourse https://github.com/huggingface/lerobot  
 
 Head to Discussions and comment there to be added to the org
+
+See the [Getting Started documentation](./getting_started.md) for setup instructions.
