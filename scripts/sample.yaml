@@ -7,7 +7,7 @@ video_interval: 1000
 enable_cameras: True
 task: Raga-Franka-Push-v0
 # task: Isaac-Lift-Cube-Franka-v0
-max_iterations: 1500
+max_iterations: 500
 seed: 69
 scene:
   num_envs: 1

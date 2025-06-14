@@ -38,9 +38,9 @@ class ObjectTableSceneCfg(InteractiveSceneCfg):
     # target object: will be populated by agent env cfg
     object: RigidObjectCfg | DeformableObjectCfg = MISSING
 
+    goal_post_center: RigidObjectCfg = MISSING
     goal_post_right: RigidObjectCfg = MISSING
     goal_post_left: RigidObjectCfg = MISSING
-    goal_post_center: RigidObjectCfg = MISSING
 
 
     # Table
