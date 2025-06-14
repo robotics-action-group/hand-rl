@@ -44,8 +44,8 @@ services:
   sim-isaac:
     build:
       context: .
-      dockerfile: sim-isaac/docker/lerobot.Dockerfile
-    image: litcr.io/lit-container/vaishnavahari/myml/ilab-img:latest
+      dockerfile: sim-isaac/Dockerfile
+    # image: litcr.io/lit-container/vaishnavahari/myml/ilab-img:latest
     container_name: sim-isaac
     environment:
       - ACCEPT_EULA=Y
