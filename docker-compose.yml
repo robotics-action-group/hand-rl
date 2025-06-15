@@ -71,8 +71,8 @@ services:
     - ~/docker/isaac-sim/data:/root/.local/share/ov/data:rw
     - ~/docker/isaac-sim/documents:/root/Documents:rw
     - ~/rldata:/workspace/rldata:rw
-    - /tmp/.X11-unix:/tmp/.X11-unix
-    - $HOME/.Xauthority:/tmp/.Xauthority:ro
+    # - /tmp/.X11-unix:/tmp/.X11-unix
+    # - $HOME/.Xauthority:/tmp/.Xauthority:ro
     entrypoint: ["/bin/bash", "-i", "../entrypoint.sh"]
     command: ["dev"]
     runtime: nvidia
