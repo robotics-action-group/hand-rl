@@ -10,7 +10,7 @@ In your computer:
 ```bash
 $ ssh <key>@ssh.lightning.com
 ```
-Replace <key> with your SSH key.
+Replace `<key>` with your SSH key.
 
 ### 1.3 Clone this repository inside studio and open in VS Code.
 
@@ -55,7 +55,7 @@ Lighting Terminal:
 $~ cd /workspace/isaaclab
 $~/isaaclab isaaclab -p scripts/reinforcement_learning/sb3/train.py --task Isaac-Cartpole-v0 --num_envs 64 --headless --video
 ``` 
-You can see the outputs (policies and videos) in the newly created `/log` directory.
+You can see the outputs (policies and videos) in the newly created `/logs` directory.
 
 ### 1.9 Push scene
 Lighting Terminal:
