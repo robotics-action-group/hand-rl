@@ -1,10 +1,10 @@
 
 ### 1.1 Login to Lightning Studio ([lightning.ai/signup](https://lightning.ai/sign-up), use university email for quick approval) and start a studio with a GPU. Make sure to connect your github account.
-** Remeber to do the git integration, and restart terminal when you do. **
+**Remeber to do the git integration, and restart terminal when you do.**
 
 ### 1.2 Connect to that studio from terminal.
 
-** The key can be found on the side with the terminal icon. **
+**The key can be found on the side with the terminal icon.**
 In your computer:
 ```bash
 $ ssh <key>@ssh.lightning.com
@@ -54,7 +54,7 @@ $~/isaaclab isaaclab -p scripts/reinforcement_learning/sb3/train.py --task Isaac
 ### 1.9 Push scene
 Lighting Terminal:
 ```bash
-$~ cd /workspace/hand-rl
-$~/hand-rl isaaclab -p scripts/vanilla/train.py
+cd /workspace/hand-rl
+isaaclab -p scripts/vanilla/train.py 
 ```
 Configs in `scripts/sample.yaml` is loaded during runtime
