@@ -58,7 +58,7 @@ services:
       - MASTER_ADDR=10.5.0.2
       - MASTER_PORT=29501
       - GLOO_SOCKET_IFNAME=eth0
-      - DISPLAY=:0  # Use the host's display for GUI
+      - DISPLAY=:1  # Use the host's display for GUI
     volumes:
     - ~/hand-rl:/workspace/hand-rl
     - ~/hand-rl/sim-isaac/entrypoint.sh:/workspace/entrypoint.sh:rw
@@ -71,6 +71,8 @@ services:
     - ~/docker/isaac-sim/data:/root/.local/share/ov/data:rw
     - ~/docker/isaac-sim/documents:/root/Documents:rw
     - ~/rldata:/workspace/rldata:rw
+    - /tmp/.X11-unix:/tmp/.X11-unix
+    - $HOME/.Xauthority:/tmp/.Xauthority:ro
     entrypoint: ["/bin/bash", "-i", "../entrypoint.sh"]
     command: ["dev"]
     runtime: nvidia
