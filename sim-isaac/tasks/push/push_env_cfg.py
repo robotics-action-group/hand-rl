@@ -17,7 +17,7 @@ from isaaclab.sim.spawners.from_files.from_files_cfg import GroundPlaneCfg, UsdF
 from isaaclab.utils import configclass
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
 
-from . import mdp
+from tasks import mdp
 
 ##
 # Scene definition
@@ -38,9 +38,9 @@ class ObjectTableSceneCfg(InteractiveSceneCfg):
     # target object: will be populated by agent env cfg
     object: RigidObjectCfg | DeformableObjectCfg = MISSING
 
+    goal_post_center: RigidObjectCfg = MISSING
     goal_post_right: RigidObjectCfg = MISSING
     goal_post_left: RigidObjectCfg = MISSING
-    goal_post_center: RigidObjectCfg = MISSING
 
 
     # Table
