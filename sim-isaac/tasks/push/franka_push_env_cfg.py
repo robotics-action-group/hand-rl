@@ -68,7 +68,7 @@ class FrankaCubePushEnvCfg(PushEnvCfg):
         # Set the goal posts
         self.scene.goal_post_center = RigidObjectCfg(
             prim_path="{ENV_REGEX_NS}/GoalPostCenter",
-            init_state=RigidObjectCfg.InitialStateCfg(pos=[0.6, 0.0, 0.05], rot=[0.7071, 0, 0, 0.7071]),
+            init_state=RigidObjectCfg.InitialStateCfg(pos=[0.4, 0.0, 0.05], rot=[0.7071, 0, 0, 0.7071]),
             spawn=sim_utils.CuboidCfg(
                 size=(0.2, 0.05, 0.05),
                 rigid_props=sim_utils.RigidBodyPropertiesCfg(kinematic_enabled=True),
