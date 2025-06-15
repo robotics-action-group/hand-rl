@@ -5,6 +5,7 @@
 ### 1.2 Connect to that studio from terminal.
 
 **The key can be found on the side with the terminal icon.**
+
 In your computer:
 ```bash
 $ ssh <key>@ssh.lightning.com
@@ -32,6 +33,7 @@ assh() {
 ```
 
 ### 1.5 Start the container
+
 Lighting Terminal:
 ```bash
 ⚡~ cd hand-rl
@@ -44,17 +46,21 @@ Lighting Terminal:
 
 ### 1.7 `hand-rl` repo should in `/workspace` and so is `isaaclab` folder.
 
+
 ### 1.8 Run an example provided by IsaacLab, from inside the container
+
 Lighting Terminal:
 ```bash
 $~ cd /workspace/isaaclab
 $~/isaaclab isaaclab -p scripts/reinforcement_learning/sb3/train.py --task Isaac-Cartpole-v0 --num_envs 64 --headless --video
 ``` 
 
+
 ### 1.9 Push scene
 Lighting Terminal:
 ```bash
 cd /workspace/hand-rl
 isaaclab -p scripts/vanilla/train.py 
+
 ```
 Configs in `scripts/sample.yaml` is loaded during runtime

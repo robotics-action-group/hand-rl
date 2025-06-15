@@ -3,14 +3,14 @@ run_name: dev
 headless: True
 video: True
 video_length: 100
-video_interval: 1000
+video_interval: 5000
 enable_cameras: True
 task: Raga-Franka-Push-v0
 # task: Isaac-Lift-Cube-Franka-v0
 max_iterations: 1500
 seed: 69
 scene:
-  num_envs: 1
+  num_envs: 512
   # env_spacing: 2
 # policy:
 #   actor_hidden_dims:

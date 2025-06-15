@@ -38,12 +38,12 @@ class FrankaCubePushEnvCfg(PushEnvCfg):
         self.actions.arm_action = mdp.JointPositionActionCfg(
             asset_name="robot", joint_names=["panda_joint.*"], scale=0.5, use_default_offset=True
         )
-        self.actions.gripper_action = mdp.BinaryJointPositionActionCfg(
-            asset_name="robot",
-            joint_names=["panda_finger.*"],
-            open_command_expr={"panda_finger_.*": 0.04},
-            close_command_expr={"panda_finger_.*": 0.0},
-        )
+        # self.actions.gripper_action = mdp.BinaryJointPositionActionCfg(
+        #     asset_name="robot",
+        #     joint_names=["panda_finger.*"],
+        #     open_command_expr={"panda_finger_.*": 0.04},
+        #     close_command_expr={"panda_finger_.*": 0.0},
+        # )
         # Set the body name for the end effector
         self.commands.object_pose.body_name = "panda_hand"
 
@@ -66,31 +66,9 @@ class FrankaCubePushEnvCfg(PushEnvCfg):
         )
 
         # Set the goal posts
-        self.scene.goal_post_right = RigidObjectCfg(
-            prim_path="{ENV_REGEX_NS}/GoalPostRight",
-            init_state=RigidObjectCfg.InitialStateCfg(pos=[0.4, 0.5, 0.05], rot=[1, 0, 0, 0]),
-            spawn=sim_utils.CuboidCfg(
-                size=(0.2, 0.05, 0.05),
-                rigid_props=sim_utils.RigidBodyPropertiesCfg(kinematic_enabled=True),
-                mass_props=sim_utils.MassPropertiesCfg(mass=1.0),
-                collision_props=sim_utils.CollisionPropertiesCfg(),
-                visual_material=sim_utils.PreviewSurfaceCfg(diffuse_color=(0.0, 1.0, 0.0)),
-            )
-        )
-        self.scene.goal_post_left = RigidObjectCfg(
-            prim_path="{ENV_REGEX_NS}/GoalPostLeft",
-            init_state=RigidObjectCfg.InitialStateCfg(pos=[0.4, -0.5, 0.05], rot=[1, 0, 0, 0]),
-            spawn=sim_utils.CuboidCfg(
-                size=(0.2, 0.05, 0.05),
-                rigid_props=sim_utils.RigidBodyPropertiesCfg(kinematic_enabled=True),
-                mass_props=sim_utils.MassPropertiesCfg(mass=1.0),
-                collision_props=sim_utils.CollisionPropertiesCfg(),
-                visual_material=sim_utils.PreviewSurfaceCfg(diffuse_color=(0.0, 1.0, 0.0)),
-            )
-        )
         self.scene.goal_post_center = RigidObjectCfg(
             prim_path="{ENV_REGEX_NS}/GoalPostCenter",
-            init_state=RigidObjectCfg.InitialStateCfg(pos=[0.4, 0.0, 0.05], rot=[1, 0, 0, 0]),
+            init_state=RigidObjectCfg.InitialStateCfg(pos=[0.6, 0.0, 0.05], rot=[0.7071, 0, 0, 0.7071]),
             spawn=sim_utils.CuboidCfg(
                 size=(0.2, 0.05, 0.05),
                 rigid_props=sim_utils.RigidBodyPropertiesCfg(kinematic_enabled=True),
@@ -99,6 +77,28 @@ class FrankaCubePushEnvCfg(PushEnvCfg):
                 visual_material=sim_utils.PreviewSurfaceCfg(diffuse_color=(0.0, 1.0, 0.0)),
             )
         )
+        # self.scene.goal_post_right = RigidObjectCfg(
+        #     prim_path="{ENV_REGEX_NS}/GoalPostRight",
+        #     init_state=RigidObjectCfg.InitialStateCfg(pos=[0.4, 0.2, 0.05], rot=[1, 0, 0, 0]),
+        #     spawn=sim_utils.CuboidCfg(
+        #         size=(0.2, 0.05, 0.05),
+        #         rigid_props=sim_utils.RigidBodyPropertiesCfg(kinematic_enabled=True),
+        #         mass_props=sim_utils.MassPropertiesCfg(mass=1.0),
+        #         collision_props=sim_utils.CollisionPropertiesCfg(),
+        #         visual_material=sim_utils.PreviewSurfaceCfg(diffuse_color=(0.0, 1.0, 0.0)),
+        #     )
+        # )
+        # self.scene.goal_post_left = RigidObjectCfg(
+        #     prim_path="{ENV_REGEX_NS}/GoalPostLeft",
+        #     init_state=RigidObjectCfg.InitialStateCfg(pos=[0.4, -0.2, 0.05], rot=[1, 0, 0, 0]),
+        #     spawn=sim_utils.CuboidCfg(
+        #         size=(0.2, 0.05, 0.05),
+        #         rigid_props=sim_utils.RigidBodyPropertiesCfg(kinematic_enabled=True),
+        #         mass_props=sim_utils.MassPropertiesCfg(mass=1.0),
+        #         collision_props=sim_utils.CollisionPropertiesCfg(),
+        #         visual_material=sim_utils.PreviewSurfaceCfg(diffuse_color=(0.0, 1.0, 0.0)),
+        #     )
+        # )
 
         # Listens to the required transforms
         marker_cfg = FRAME_MARKER_CFG.copy()
