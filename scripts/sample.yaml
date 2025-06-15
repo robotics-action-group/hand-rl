@@ -1,6 +1,6 @@
 experiment_name: Franka-Push
 run_name: dev
-headless: False
+headless: True
 video: True
 video_length: 100
 video_interval: 5000
