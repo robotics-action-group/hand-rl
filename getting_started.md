@@ -30,10 +30,10 @@ assh() {
 ⚡~ cd hand-rl
 ⚡~/hand-rl ./job.sh sim-isaac dev
 ```
-`dev` mode starts the container `sim-isaac`, open a tty into the container and mount the project source code.
+The above command starts the container `sim-isaac` in `dev` mode, opens a tty into the container and mounts the project source code.
 
 1.6 Attach VS Code to the container.
-`Ctrl+Shift+p` in VS Code and type in `Dev Container: Attach to Running Container`, make sure extensions for Dev Container are setup.
+`Ctrl+Shift+p` in VS Code and type in `Dev Container: Attach to Running Container`. Make sure extensions Dev Containers are already setup.
 
 1.7 `hand-rl` repo should in `/workspace` and so is `isaaclab` folder.
 
@@ -42,7 +42,7 @@ assh() {
 $~ cd /workspace/isaaclab
 $~/isaaclab isaaclab -p scripts/reinforcement_learning/sb3/train.py --task Isaac-Cartpole-v0 --num_envs 64 --headless --video
 ``` 
-
+You can see the output in the `/log` directory
 1.9 Push scene
 ```bash
 $~ cd /workspace/hand-rl
