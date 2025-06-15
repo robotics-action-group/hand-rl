@@ -1,19 +1,16 @@
-experiment_name: vla
-run_name: testt
+experiment_name: Franka-Push
+run_name: dev
 headless: True
 video: True
-video_length: 1000
-video_interval: 1000
+video_length: 100
+video_interval: 5000
 enable_cameras: True
-# task: Gut-Velocity-Flat-Neura-Play-v0
-# task: Gut-Velocity-Flat-Neura-v0
-# task: Gut-Manipulation-Neura-v0
-task: Gut-Manipulation-Vision-Neura-v0
+task: Raga-Franka-Push-v0
 # task: Isaac-Lift-Cube-Franka-v0
 max_iterations: 1500
 seed: 69
 scene:
-  num_envs: 1
+  num_envs: 512
   # env_spacing: 2
 # policy:
 #   actor_hidden_dims:
@@ -30,15 +27,15 @@ scene:
 #   track_ang_vel_z_exp:
 #     weight: 2
 
-rewards:
-  reaching_object:
-    weight: 15
-  lifting_object:
-    weight: 5
-  object_goal_tracking:
-    weight: 1
-  object_goal_tracking_fine_grained:
-    weight: 0.1
+# rewards:
+#   reaching_object:
+#     weight: 15
+#   lifting_object:
+#     weight: 5
+#   object_goal_tracking:
+#     weight: 1
+#   object_goal_tracking_fine_grained:
+#     weight: 0.1
 #   object_goal_tracking:
 #     weight: 1
 #   object_goal_tracking_fine_grained:

@@ -17,7 +17,7 @@ from isaaclab.sim.spawners.from_files.from_files_cfg import GroundPlaneCfg, UsdF
 from isaaclab.utils import configclass
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
 
-from . import mdp
+from tasks import mdp
 
 ##
 # Scene definition
@@ -38,9 +38,9 @@ class ObjectTableSceneCfg(InteractiveSceneCfg):
     # target object: will be populated by agent env cfg
     object: RigidObjectCfg | DeformableObjectCfg = MISSING
 
-    goal_post_right: RigidObjectCfg = MISSING
-    goal_post_left: RigidObjectCfg = MISSING
     goal_post_center: RigidObjectCfg = MISSING
+    # goal_post_right: RigidObjectCfg = MISSING
+    # goal_post_left: RigidObjectCfg = MISSING
 
 
     # Table
@@ -90,7 +90,7 @@ class ActionsCfg:
 
     # will be set by agent env cfg
     arm_action: mdp.JointPositionActionCfg | mdp.DifferentialInverseKinematicsActionCfg = MISSING
-    gripper_action: mdp.BinaryJointPositionActionCfg = MISSING
+    # gripper_action: mdp.BinaryJointPositionActionCfg = MISSING
 
 
 @configclass
@@ -138,8 +138,6 @@ class RewardsCfg:
 
     reaching_object = RewTerm(func=mdp.object_ee_distance, params={"std": 0.1}, weight=1.0)
 
-    lifting_object = RewTerm(func=mdp.object_is_lifted, params={"minimal_height": 0.04}, weight=15.0)
-
     object_goal_tracking = RewTerm(
         func=mdp.object_goal_distance,
         params={"std": 0.3, "minimal_height": 0.04, "command_name": "object_pose"},
@@ -161,6 +159,13 @@ class RewardsCfg:
         params={"asset_cfg": SceneEntityCfg("robot")},
     )
 
+    object_to_goal_distance = RewTerm(
+        func=mdp.distance_to_goal,
+        weight=1.0,
+        params={
+            "std": 0.3,
+        }
+    )
 
 @configclass
 class TerminationsCfg:

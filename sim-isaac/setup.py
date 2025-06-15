@@ -18,7 +18,7 @@ INSTALL_REQUIRES = [
 
 # Installation operation
 setup(
-    name="franka-sim-isaac",
+    name="franka_sim_isaac",
     packages=["tasks"],
     author=EXTENSION_TOML_DATA["package"]["author"],
     maintainer=EXTENSION_TOML_DATA["package"]["maintainer"],
